@@ -1,0 +1,747 @@
+app:
+  description: ''
+  icon: 🤖
+  icon_background: '#FFEAD5'
+  mode: workflow
+  name: KnowledgeGraphExtractorFromResearchPaperMetadata
+  use_icon_as_answer_icon: false
+dependencies:
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: langgenius/huggingface_hub:0.0.3@b0ef53c1efa8333b941237787a3d7116fcedda0aeb415d6774b2bc42e467b9c3
+kind: app
+version: 0.1.5
+workflow:
+  conversation_variables: []
+  environment_variables: []
+  features:
+    file_upload:
+      allowed_file_extensions:
+      - .JPG
+      - .JPEG
+      - .PNG
+      - .GIF
+      - .WEBP
+      - .SVG
+      allowed_file_types:
+      - image
+      allowed_file_upload_methods:
+      - local_file
+      - remote_url
+      enabled: false
+      fileUploadConfig:
+        audio_file_size_limit: 50
+        batch_count_limit: 5
+        file_size_limit: 15
+        image_file_size_limit: 10
+        video_file_size_limit: 100
+        workflow_file_upload_limit: 10
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+      number_limits: 3
+    opening_statement: ''
+    retriever_resource:
+      enabled: true
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        isInIteration: false
+        sourceType: start
+        targetType: document-extractor
+      id: 1739728735404-source-1740256756488-target
+      selected: false
+      source: '1739728735404'
+      sourceHandle: source
+      target: '1740256756488'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: http-request
+      id: 1739993795163-source-1741648061712-target
+      selected: false
+      source: '1739993795163'
+      sourceHandle: source
+      target: '1741648061712'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: document-extractor
+        targetType: llm
+      id: 1740256756488-source-1739993795163-target
+      source: '1740256756488'
+      sourceHandle: source
+      target: '1739993795163'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: code
+        targetType: iteration
+      id: 1741696099704-source-1741696632324-target
+      source: '1741696099704'
+      sourceHandle: source
+      target: '1741696632324'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: http-request
+        targetType: code
+      id: 1741648061712-source-1741696099704-target
+      selected: false
+      source: '1741648061712'
+      sourceHandle: source
+      target: '1741696099704'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '1741696632324'
+        sourceType: iteration-start
+        targetType: http-request
+      id: 1741696632324start-source-1741696718753-target
+      source: 1741696632324start
+      sourceHandle: source
+      target: '1741696718753'
+      targetHandle: target
+      type: custom
+      zIndex: 1002
+    - data:
+        isInLoop: false
+        sourceType: document-extractor
+        targetType: llm
+      id: 1740256756488-source-1739729621994-target
+      source: '1740256756488'
+      sourceHandle: source
+      target: '1739729621994'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: llm
+        targetType: end
+      id: 1739729621994-source-1741697763029-target
+      source: '1739729621994'
+      sourceHandle: source
+      target: '1741697763029'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: iteration
+        targetType: code
+      id: 1741696632324-source-1741793130593-target
+      source: '1741696632324'
+      sourceHandle: source
+      target: '1741793130593'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: llm
+        targetType: end
+      id: 1741899208552-source-1741697763029-target
+      source: '1741899208552'
+      sourceHandle: source
+      target: '1741697763029'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: code
+        targetType: code
+      id: 1741793130593-source-1741955115656-target
+      source: '1741793130593'
+      sourceHandle: source
+      target: '1741955115656'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: code
+        targetType: llm
+      id: 1741955115656-source-1741899208552-target
+      source: '1741955115656'
+      sourceHandle: source
+      target: '1741899208552'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        desc: ''
+        selected: false
+        title: Start
+        type: start
+        variables:
+        - allowed_file_extensions: []
+          allowed_file_types:
+          - document
+          allowed_file_upload_methods:
+          - local_file
+          - remote_url
+          label: paper
+          max_length: 48
+          options: []
+          required: true
+          type: file
+          variable: paper
+      height: 89
+      id: '1739728735404'
+      position:
+        x: -561.8120331730834
+        y: 140.44282768319323
+      positionAbsolute:
+        x: -561.8120331730834
+        y: 140.44282768319323
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        context:
+          enabled: true
+          variable_selector:
+          - '1740256756488'
+          - text
+        desc: ''
+        model:
+          completion_params:
+            max_new_tokens: 3501
+            temperature: 0.8
+            top_k: 10
+            top_p: 0.9
+          mode: completion
+          name: mistralai/Mistral-7B-Instruct-v0.3
+          provider: langgenius/huggingface_hub/huggingface_hub
+        prompt_template:
+          edition_type: basic
+          text: "You are an intelligent assistant tasked with extracting important\
+            \ information from research papers. Please analyze the following paper\
+            \ text and extract the required information. Summary should be 1 page.\n\
+            \n**Required Outputs:**\n**Summary**: Provide a concise summary of the\
+            \ paper \nOnce you have extracted this information, return it in the following\
+            \ format:\n\"summary\": \"{{#context#}}\"\n\n"
+        selected: false
+        title: SummaryExtractorFromPaper
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 89
+      id: '1739729621994'
+      position:
+        x: -18.485982444894944
+        y: -73.68023100299273
+      positionAbsolute:
+        x: -18.485982444894944
+        y: -73.68023100299273
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        context:
+          enabled: true
+          variable_selector:
+          - '1740256756488'
+          - text
+        desc: ''
+        model:
+          completion_params:
+            max_new_tokens: 1001
+            temperature: 0.8
+            top_k: 5
+            top_p: 0.6
+          mode: completion
+          name: mistralai/Mistral-7B-Instruct-v0.3
+          provider: langgenius/huggingface_hub/huggingface_hub
+        prompt_template:
+          edition_type: basic
+          text: "Given the following text from a research paper, extract the title\
+            \ of the paper. The title is typically located at the beginning of the\
+            \ document and may be followed by the authors' names and abstract. Return\
+            \ only the title, do not add any extra text with the title. \n{{#1740256756488.text#}}\
+            \ Title\n"
+        selected: false
+        title: TitleExtractorFromPaper
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 89
+      id: '1739993795163'
+      position:
+        x: -13.645858115031274
+        y: 444.44282768319295
+      positionAbsolute:
+        x: -13.645858115031274
+        y: 444.44282768319295
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        desc: ''
+        is_array_file: false
+        selected: false
+        title: Doc Extractor
+        type: document-extractor
+        variable_selector:
+        - '1739728735404'
+        - paper
+      height: 91
+      id: '1740256756488'
+      position:
+        x: -262.08315247963833
+        y: 140.44282768319323
+      positionAbsolute:
+        x: -262.08315247963833
+        y: 140.44282768319323
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        authorization:
+          config: null
+          type: no-auth
+        body:
+          data: []
+          type: none
+        desc: ''
+        headers: ''
+        method: get
+        params: 'query:{{#1739993795163.text#}}
+
+          fields:title,authors,abstract,venue,year,references.title
+
+          limit:1'
+        retry_config:
+          max_retries: 10
+          retry_enabled: true
+          retry_interval: 5000
+        selected: false
+        timeout:
+          max_connect_timeout: 0
+          max_read_timeout: 0
+          max_write_timeout: 0
+        title: MetaDataExtractionByAPI
+        type: http-request
+        url: https://api.semanticscholar.org/graph/v1/paper/search
+        variables: []
+      height: 134
+      id: '1741648061712'
+      position:
+        x: 281.41182689769084
+        y: 444.44282768319295
+      positionAbsolute:
+        x: 281.41182689769084
+        y: 444.44282768319295
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        code: "import json\n\ndef main(response_json: str) -> dict:\n    try:\n  \
+          \      # Parse the outer JSON\n        inner_data = json.loads(response_json)\n\
+          \        \n        #Extract title of given paper\n        Title = inner_data[\"\
+          data\"][0].get(\"title\")\n\n        # Extract references\n        references\
+          \ = inner_data[\"data\"][0].get(\"references\", [])\n\n        # Extract\
+          \ paperIds (ignoring null values)\n        #paper_ids = [ref[\"paperId\"\
+          ] for ref in references if ref.get(\"paperId\")]\n        # Extract only\
+          \ titles (ignoring null values)\n        paper_titles = [\n            {\"\
+          title\": ref[\"title\"]}\n            for ref in references\n          \
+          \  if ref.get(\"title\")\n        ]\n        paper_titles.append({\"title\"\
+          : Title})\n\n        return {\n            \"result\": paper_titles  # Returning\
+          \ an array of objects with titles only\n        }\n\n        #return {\n\
+          \        #   \"result\": str(paper_titles)\n        #}\n    except (json.JSONDecodeError,\
+          \ KeyError, IndexError) as e:\n        return {\n            \"error\":\
+          \ f\"Failed to process JSON: {str(e)}\"\n        }\n\n# Example usage:\n\
+          # response_json = '...'  # Replace with actual JSON string\n# print(main(response_json))\n"
+        code_language: python3
+        desc: ''
+        outputs:
+          result:
+            children: null
+            type: array[object]
+        selected: false
+        title: ReferencePapersTitleExtraction
+        type: code
+        variables:
+        - value_selector:
+          - '1741648061712'
+          - body
+          variable: response_json
+      height: 53
+      id: '1741696099704'
+      position:
+        x: 556.9939656253005
+        y: 444.44282768319295
+      positionAbsolute:
+        x: 556.9939656253005
+        y: 444.44282768319295
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        desc: ''
+        error_handle_mode: terminated
+        height: 219
+        is_parallel: false
+        iterator_selector:
+        - '1741696099704'
+        - result
+        output_selector:
+        - '1741696718753'
+        - body
+        output_type: array[string]
+        parallel_nums: 10
+        selected: false
+        start_node_id: 1741696632324start
+        title: MetaDataExtractionIteration
+        type: iteration
+        width: 917.7012302230673
+      height: 219
+      id: '1741696632324'
+      position:
+        x: 860.113382678616
+        y: 444.44282768319295
+      positionAbsolute:
+        x: 860.113382678616
+        y: 444.44282768319295
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 918
+      zIndex: 1
+    - data:
+        desc: ''
+        isInIteration: true
+        selected: false
+        title: ''
+        type: iteration-start
+      draggable: false
+      height: 48
+      id: 1741696632324start
+      parentId: '1741696632324'
+      position:
+        x: 24
+        y: 68
+      positionAbsolute:
+        x: 884.113382678616
+        y: 512.442827683193
+      selectable: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom-iteration-start
+      width: 44
+      zIndex: 1002
+    - data:
+        authorization:
+          config: null
+          type: no-auth
+        body:
+          data: []
+          type: none
+        desc: ''
+        headers: ''
+        isInIteration: true
+        isInLoop: false
+        iteration_id: '1741696632324'
+        method: get
+        params: 'query:{{#1741696632324.item#}}
+
+          fields:title,authors,abstract,venue,year,externalIds,fieldsOfStudy
+
+          limit:1'
+        retry_config:
+          max_retries: 10
+          retry_enabled: true
+          retry_interval: 5000
+        selected: false
+        timeout:
+          max_connect_timeout: 0
+          max_read_timeout: 0
+          max_write_timeout: 0
+        title: MetadataExtractionByAPI
+        type: http-request
+        url: https://api.semanticscholar.org/graph/v1/paper/search
+        variables: []
+      height: 134
+      id: '1741696718753'
+      parentId: '1741696632324'
+      position:
+        x: 205.34024604461365
+        y: 65
+      positionAbsolute:
+        x: 1065.4536287232295
+        y: 509.44282768319295
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+      zIndex: 1002
+    - data:
+        desc: ''
+        outputs:
+        - value_selector:
+          - '1739729621994'
+          - text
+          variable: Summary
+        - value_selector:
+          - '1741899208552'
+          - text
+          variable: DescriptionofGraph
+        - value_selector:
+          - '1741955115656'
+          - Metadata
+          variable: Metadata
+        selected: false
+        title: End
+        type: end
+      height: 141
+      id: '1741697763029'
+      position:
+        x: 2061.517900552223
+        y: -80.67767427196054
+      positionAbsolute:
+        x: 2061.517900552223
+        y: -80.67767427196054
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        code: "import json\nimport requests\n\ndef main(output_json_data: list) ->\
+          \ dict:\n    \"\"\"\n    Processes a list of JSON strings, extracts research\
+          \ paper details, \n    and returns a dictionary with structured paper data.\n\
+          \    \"\"\"\n    neo4j_payloads = []\n\n    for output_item in output_json_data:\n\
+          \        try:\n            parsed_data = json.loads(output_item)  # Ensure\
+          \ it's valid JSON\n        except json.JSONDecodeError:\n            print(\"\
+          Skipping invalid JSON entry:\", output_item)\n            continue\n\n \
+          \       papers = parsed_data.get(\"data\", [])\n\n        for paper in papers:\n\
+          \            paper_id = paper.get(\"paperId\", \"\")\n            title\
+          \ = paper.get(\"title\", \"\")\n            abstract = paper.get(\"abstract\"\
+          , \"\")\n            fieldsOfStudy = paper.get(\"fieldsOfStudy\", \"\")\n\
+          \            venue = paper.get(\"venue\", \"\")\n            year = paper.get(\"\
+          year\", \"\")\n            authors = [author.get(\"name\", \"Unknown\")\
+          \ for author in paper.get(\"authors\", [])]\n            doi = paper.get(\"\
+          externalIds\", {}).get(\"DOI\", \"\")\n            \n\n\n            neo4j_payload\
+          \ = {\n                \"paperId\": paper_id,\n                \"title\"\
+          : title,\n                \"abstract\": abstract,\n                \"year\"\
+          : year,\n                \"venue\": venue,\n                \"authors\"\
+          : authors,\n                \"doi\": doi,\n                \"fieldsOfStudy\"\
+          :fieldsOfStudy\n            }\n\n            neo4j_payloads.append(neo4j_payload)\n\
+          \    \n    # Neo4j API endpoint\n    url = \"https://4f05d51b.databases.neo4j.io/db/neo4j/query/v2\"\
+          \n\n    # Headers\n    headers = {\n        \"Content-Type\": \"application/json\"\
+          ,\n        \"Accept\": \"application/json\",\n        \"Authorization\"\
+          : \"Basic bmVvNGo6TU9uSjhCMXMxRjJkcXRiMlpjSTZUY29KaFZQSXprN000RXZzUkgyXzBlYw==\"\
+          \n    }\n\n    # Request body\n    # Request body with Cypher query for\
+          \ creating nodes and relationships\n    payload = {\n        \"statement\"\
+          : \"\"\"\n            UNWIND $papers AS paper\n            MERGE (p:Paper\
+          \ {paperId: paper.paperId})\n            SET p.title = paper.title,\n  \
+          \              p.abstract = paper.abstract,\n                p.year = paper.year,\n\
+          \                p.doi = paper.doi\n\n            // Create Author nodes\
+          \ and WROTE relationship\n            FOREACH (author IN paper.authors |\n\
+          \                MERGE (a:Author {name: author})\n                MERGE\
+          \ (a)-[:WROTE]->(p)\n            )\n\n            // Create Venue node and\
+          \ PUBLISHED_IN relationship\n            MERGE (v:Venue {name: paper.venue})\n\
+          \            MERGE (p)-[:PUBLISHED_IN]->(v)\n            MERGE (v)-[:PUBLISHED_BY]->(p)\n\
+          \n            // Create DOI node and HAS_DOI relationship\n            MERGE\
+          \ (doi:DOI {id: paper.doi})\n            MERGE (p)-[:HAS_DOI]->(doi)\n \
+          \           \n            // Create FieldsOfStudy nodes and RELATES_TO relationship\n\
+          \            FOREACH (field IN paper.fieldsOfStudy |\n                MERGE\
+          \ (f:FieldsOfStudy {name: field})\n                MERGE (p)-[:RELATES_TO]->(f)\n\
+          \            )\n            \n        \"\"\",\n        \"parameters\": {\"\
+          papers\": neo4j_payloads}\n    }\n    # Send the POST request\n    response\
+          \ = requests.post(url, headers=headers, json=payload)\n\n    # Print the\
+          \ response\n    if response.status_code == 200 or response.status_code ==\
+          \ 201:\n         return {\"response\": str\n    (response.json())} \n  \
+          \     \n    else:\n        return {\"response\": str\n    (response.text)}\
+          \ \n       \n    # Return a structured dictionary"
+        code_language: python3
+        desc: ''
+        outputs:
+          response:
+            children: null
+            type: string
+        selected: false
+        title: StructureMetadataToPushInNeo4jAPI
+        type: code
+        variables:
+        - value_selector:
+          - '1741696632324'
+          - output
+          variable: output_json_data
+      height: 53
+      id: '1741793130593'
+      position:
+        x: 568.2055246598004
+        y: 156.44282768319317
+      positionAbsolute:
+        x: 568.2055246598004
+        y: 156.44282768319317
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        context:
+          enabled: true
+          variable_selector:
+          - '1741955115656'
+          - Metadata
+        desc: ''
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: completion
+          name: mistralai/Mistral-7B-Instruct-v0.3
+          provider: langgenius/huggingface_hub/huggingface_hub
+        prompt_template:
+          edition_type: basic
+          text: '
+
+            You are an expert in knowledge graph construction and academic data modeling.
+            Your task is to describe structured Cypher queries, how they can populate
+            a Neo4j graph database with research paper metadata.
+
+            { "statement": """ UNWIND $papers AS paper MERGE (p:Paper {paperId: paper.paperId})
+            SET p.title = paper.title, p.abstract = paper.abstract, p.year = paper.year,
+            p.doi = paper.doi // Create Author nodes and WROTE relationship FOREACH
+            (author IN paper.authors | MERGE (a:Author {name: author}) MERGE (a)-[:WROTE]->(p)
+            ) // Create Venue node and PUBLISHED_IN relationship MERGE (v:Venue {name:
+            paper.venue}) MERGE (p)-[:PUBLISHED_IN]->(v) MERGE (v)-[:PUBLISHED_BY]->(p)
+            // Create DOI node and HAS_DOI relationship MERGE (doi:DOI {id: paper.doi})
+            MERGE (p)-[:HAS_DOI]->(doi) // Create FieldsOfStudy nodes and RELATES_TO
+            relationship FOREACH (field IN paper.fieldsOfStudy | MERGE (f:FieldsOfStudy
+            {name: field}) MERGE (p)-[:RELATES_TO]->(f) ) } describe how many nodes
+            and relations it will create in knowledge graph based on this cypher text
+            and {{#1741955115656.Metadata#}}. Also print the {{#context#}}
+
+            Output should be like this format:
+
+            **Nodes : node 1 name, node 2 name,.....node n name **
+
+
+            **Relations: relation 1,relation 2,......relation n**
+
+
+            **Metadata: provided input string**'
+        selected: false
+        title: ShowOverview
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 89
+      id: '1741899208552'
+      position:
+        x: 1815.4219495310645
+        y: 162.44282768319317
+      positionAbsolute:
+        x: 1815.4219495310645
+        y: 162.44282768319317
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    - data:
+        code: "import json\nimport requests\n\ndef main(output_json_data: list) ->\
+          \ dict:\n    \"\"\"\n    Processes a list of JSON strings, extracts research\
+          \ paper details, \n    and returns a dictionary with structured paper data.\n\
+          \    \"\"\"\n    neo4j_payloads = []\n\n    for output_item in output_json_data:\n\
+          \        try:\n            parsed_data = json.loads(output_item)  # Ensure\
+          \ it's valid JSON\n        except json.JSONDecodeError:\n            print(\"\
+          Skipping invalid JSON entry:\", output_item)\n            continue\n\n \
+          \       papers = parsed_data.get(\"data\", [])\n        for paper in papers:\n\
+          \            paper_id = paper.get(\"paperId\", \"\")\n            title\
+          \ = paper.get(\"title\", \"\")\n            abstract = paper.get(\"abstract\"\
+          , \"\")\n            fieldsOfStudy = paper.get(\"fieldsOfStudy\", \"\")\n\
+          \            venue = paper.get(\"venue\", \"\")\n            year = paper.get(\"\
+          year\", \"\")\n            authors = [author.get(\"name\", \"Unknown\")\
+          \ for author in paper.get(\"authors\", [])]\n            doi = paper.get(\"\
+          externalIds\", {}).get(\"DOI\", \"\")\n            \n\n            neo4j_payload\
+          \ = {\n                \"paperId\": paper_id,\n                \"title\"\
+          : title,\n                \"abstract\": abstract,\n                \"year\"\
+          : year,\n                \"venue\": venue,\n                \"authors\"\
+          : authors,   \n                \"doi\": doi,\n                \"fieldsOfStudy\"\
+          :fieldsOfStudy\n            }\n\n            neo4j_payloads.append(neo4j_payload)\n\
+          \n        return {\n                \"Metadata\": str(neo4j_payloads)  #\
+          \ Returning an array of objects with titles only\n        }\n\n        \
+          \   \n    # Return a structured dictionary"
+        code_language: python3
+        desc: ''
+        outputs:
+          Metadata:
+            children: null
+            type: string
+        selected: false
+        title: RestructureDataToShow
+        type: code
+        variables:
+        - value_selector:
+          - '1741696632324'
+          - output
+          variable: output_json_data
+      height: 53
+      id: '1741955115656'
+      position:
+        x: 1142.3948432593431
+        y: 156.44282768319317
+      positionAbsolute:
+        x: 1142.3948432593431
+        y: 156.44282768319317
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 243
+    viewport:
+      x: 322.8726527156255
+      y: 254.3573804287804
+      zoom: 0.32987697769322405
